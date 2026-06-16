@@ -1,25 +1,22 @@
 const express = require('express');
 const cors = require('cors');
-const pool = require('./db');
-require('dotenv').config();
-
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send('SmartStock Backend Sunucusu Sorunsuz Çalışıyor!');
-});
+const categoryRoutes = require('./routes/categoryRoutes');
+const productRoutes = require('./routes/productRoutes');
+const tableRoutes = require('./routes/tableRoutes');
+const orderRoutes = require('./routes/orderRoutes');
+
+
+app.use('/api/categories', categoryRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/tables', tableRoutes);
+app.use('/api/orders', orderRoutes);
 
 const PORT = 5000;
 app.listen(PORT, async () => {
     console.log(`Sunucu ${PORT} portunda başarıyla ayağa kalktı!`);
-    
-    try {
-        const res = await pool.query('SELECT NOW()');
-        console.log('PostgreSQL Veritabanı Bağlantısı Başarılı! Sunucu Saati:', res.rows[0].now);
-    } catch (err) {
-        console.error('Veritabanı Bağlantı Hatası Detayı:', err);
-    }
 });

@@ -1,0 +1,63 @@
+POST http://localhost:5000/api/categories
+Content-Type: application/json
+
+{
+    "name": "Ana Yemekler"
+}
+
+###
+
+GET http://localhost:5000/api/categories
+
+
+
+
+###
+
+POST http://localhost:5000/api/products
+Content-Type: application/json
+
+{
+    "name": "Adana Kebap",
+    "price": 250.00,
+    "category_id": 1
+}
+
+###
+
+GET http://localhost:5000/api/products
+
+
+
+
+###
+
+POST http://localhost:5000/api/tables
+Content-Type: application/json
+
+{
+    "table_number": "Masa 1"
+}
+
+###
+
+GET http://localhost:5000/api/tables
+
+
+
+
+
+###
+
+POST http://localhost:5000/api/orders
+Content-Type: application/json
+
+{
+    "table_id": 1,
+    "product_id": 1,
+    "quantity": 2
+}
+
+###
+
+GET http://localhost:5000/api/orders
